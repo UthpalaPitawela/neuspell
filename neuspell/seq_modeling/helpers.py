@@ -710,12 +710,12 @@ def bert_tokenize_for_valid_examples(batch_orginal_sentences, batch_noisy_senten
 
     if BERT_TOKENIZER is None:  # gets initialized during the first call to this method
         if bert_pretrained_name_or_path:
-            BERT_TOKENIZER = AutoTokenizer.from_pretrained("facebook/mbart-large-cc25")
+            BERT_TOKENIZER = AutoTokenizer.from_pretrained("facebook/mbart-large-cc25",add_prefix_space=True,use_fast=False)
             # BERT_TOKENIZER = transformers.BertTokenizer.from_pretrained(bert_pretrained_name_or_path)
             BERT_TOKENIZER.do_basic_tokenize = True
             BERT_TOKENIZER.tokenize_chinese_chars = False
         else:
-            BERT_TOKENIZER = AutoTokenizer.from_pretrained("facebook/mbart-large-cc25")
+            BERT_TOKENIZER = AutoTokenizer.from_pretrained("facebook/mbart-large-cc25",add_prefix_space=True,use_fast=False)
             # BERT_TOKENIZER = transformers.BertTokenizer.from_pretrained('bert-base-cased')
             BERT_TOKENIZER.do_basic_tokenize = True
             BERT_TOKENIZER.tokenize_chinese_chars = False
