@@ -9,6 +9,7 @@ from torch.nn.utils.rnn import pad_sequence
 
 from .util import is_module_available, get_module_or_attr
 from ..commons import ALLENNLP_ELMO_PRETRAINED_FOLDER
+from transformers import MBartModel
 
 DEFAULT_BERT_PRETRAINED_NAME_OR_PATH = "bert-base-cased"
 
@@ -868,7 +869,7 @@ class SubwordBert(nn.Module):
         super(SubwordBert, self).__init__()
 
         self.bert_dropout = torch.nn.Dropout(0.2)
-        self.bert_model = get_pretrained_bert(bert_pretrained_name_or_path)
+        self.bert_model =  MBartModel.from_pretrained("facebook/mbart-large-cc25")
         self.bertmodule_outdim = self.bert_model.config.hidden_size
         if freeze_bert:
             # Uncomment to freeze BERT layers
